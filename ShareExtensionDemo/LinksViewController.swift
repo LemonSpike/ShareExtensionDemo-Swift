@@ -14,10 +14,17 @@ class LinksViewController: UITableViewController, SFSafariViewControllerDelegate
     
     var links: Array<String> {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey(userDefaultsKey) as! Array<String>
+            let userDefaults = NSUserDefaults(suiteName: "group.pranav.kasetti.ShareExtensionDemo")
+            if let links = userDefaults?.objectForKey(userDefaultsKey) as! Array<String>? {
+                return links
+            }
+            
+            return []
         }
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: userDefaultsKey)
+            let userDefaults = NSUserDefaults(suiteName: "group.pranav.kasetti.ShareExtensionDemo")
+            userDefaults?.setObject(newValue, forKey: userDefaultsKey)
+            userDefaults?.synchronize()
         }
     }
     
@@ -41,7 +48,7 @@ class LinksViewController: UITableViewController, SFSafariViewControllerDelegate
         }
         
         presentViewController(alertController, animated: true, completion: nil)
-   
+        
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +74,7 @@ class LinksViewController: UITableViewController, SFSafariViewControllerDelegate
         guard let url = NSURL(string: urlString) where urlString.lowercaseString.hasPrefix("http://") || urlString.lowercaseString.hasPrefix("https://") else {
             return
         }
-   
+        
         let safariViewController = SFSafariViewController(URL: url)
         safariViewController.delegate = self
         self.presentViewController(safariViewController, animated: true, completion: nil)
