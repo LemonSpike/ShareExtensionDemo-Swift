@@ -10,9 +10,26 @@ import UIKit
 import Social
 import MobileCoreServices
 
-class ShareViewController: SLComposeServiceViewController {
+class ShareViewController: UIViewController {
     
     let userDefaultsKey = "LinksUserDefaultsKey"
+    let userDefaultsKeyTwo = "Links2UserDefaultsKey"
+    
+    var links2: Array<String> {
+        get {
+            let userDefaults = NSUserDefaults(suiteName: "group.pranav.kasetti.ShareExtensionDemo")
+            if let links = userDefaults?.objectForKey(userDefaultsKeyTwo) as! Array<String>? {
+                return links
+            }
+            
+            return []
+        }
+        set {
+            let userDefaults = NSUserDefaults(suiteName: "group.pranav.kasetti.ShareExtensionDemo")
+            userDefaults?.setObject(newValue, forKey: userDefaultsKeyTwo)
+            userDefaults?.synchronize()
+        }
+    }
     
     var links: Array<String> {
         get {
@@ -30,12 +47,7 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
     
-    override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
-        return true
-    }
-    
-    override func didSelectPost() {
+    @IBAction func didSelectPost(sender: AnyObject) {
         let contentType = kUTTypeURL as String
         let content = extensionContext!.inputItems.first as! NSExtensionItem
         
@@ -55,9 +67,29 @@ class ShareViewController: SLComposeServiceViewController {
         }
     }
     
-    override func configurationItems() -> [AnyObject]! {
-        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-        return []
+    @IBAction func didSelectPostVersionTwo(sender: AnyObject) {
+        let contentType = kUTTypeURL as String
+        let content = extensionContext!.inputItems.first as! NSExtensionItem
+        
+        if let attachment = content.attachments?.first {
+            if attachment.hasItemConformingToTypeIdentifier(contentType) {
+                attachment.loadItemForTypeIdentifier(contentType, options: nil, completionHandler: { (data, error) in
+                    guard error == nil else {
+                        print(error)
+                        return
+                    }
+                    
+                    let url = data as! NSURL
+                    self.links2.append(url.absoluteString)
+                    self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
+                })
+            }
+        }
+    }
+    
+    @IBAction func cancelPressed(sender: AnyObject) {
+        self.extensionContext!.completeRequestReturningItems(nil, completionHandler:nil)
+        
     }
     
 }

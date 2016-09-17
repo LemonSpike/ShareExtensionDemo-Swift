@@ -27,16 +27,15 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>NSExtensionActivationRule</key>
-			<dict/>
-			<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-			<integer>1</integer>
+			<dict>
+				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
+				<integer>1</integer>
+			</dict>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
-		<key>NSExtensionPrincipalClass</key>
-		<string>ShareViewController</string>
 	</dict>
 </dict>
 </plist>

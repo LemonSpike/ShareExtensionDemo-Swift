@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j1y-V4-xli">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Tw-2v-c7c">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,20 +8,94 @@
         <!--Share View Controller-->
         <scene sceneID="ceB-am-kn3">
             <objects>
-                <viewController id="j1y-V4-xli" customClass="ShareViewController" customModule="ShareExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShareViewController" id="j1y-V4-xli" customClass="ShareViewController" customModule="ShareExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8bI-gs-bmD"/>
                         <viewControllerLayoutGuide type="bottom" id="d5i-Ba-RvD"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="wbc-yd-nQP">
+                    <view key="view" contentMode="scaleToFill" id="wbc-yd-nQP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idP-dz-B0Z">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CvL-nh-nYJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEn-4p-y2Q">
+                                <rect key="frame" x="175" y="225" width="250" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLf-YP-Bka">
+                                        <rect key="frame" x="80" y="70" width="90" height="30"/>
+                                        <state key="normal" title="Post to List 2"/>
+                                        <connections>
+                                            <action selector="didSelectPostVersionTwo:" destination="j1y-V4-xli" eventType="touchUpInside" id="mlT-XT-ptg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2d-aZ-XhX">
+                                        <rect key="frame" x="101" y="120" width="48" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="j1y-V4-xli" eventType="touchUpInside" id="Dz1-Wi-QsB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2R6-LH-kdC">
+                                        <rect key="frame" x="81" y="20" width="88" height="30"/>
+                                        <state key="normal" title="Post to List 1"/>
+                                        <connections>
+                                            <action selector="didSelectPost:" destination="j1y-V4-xli" eventType="touchUpInside" id="rk0-ik-HkX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sLf-YP-Bka" firstAttribute="top" secondItem="2R6-LH-kdC" secondAttribute="bottom" constant="20" id="47s-FR-kNV"/>
+                                    <constraint firstItem="2R6-LH-kdC" firstAttribute="centerX" secondItem="gEn-4p-y2Q" secondAttribute="centerX" id="H4B-1t-BHL"/>
+                                    <constraint firstItem="sLf-YP-Bka" firstAttribute="centerX" secondItem="gEn-4p-y2Q" secondAttribute="centerX" id="OMv-z4-SRi"/>
+                                    <constraint firstItem="R2d-aZ-XhX" firstAttribute="top" secondItem="sLf-YP-Bka" secondAttribute="bottom" constant="20" id="Wke-BN-ew4"/>
+                                    <constraint firstAttribute="width" constant="250" id="g9Z-HQ-HHa"/>
+                                    <constraint firstItem="R2d-aZ-XhX" firstAttribute="centerX" secondItem="gEn-4p-y2Q" secondAttribute="centerX" id="hYy-dr-tdH"/>
+                                    <constraint firstAttribute="height" constant="150" id="n6T-WA-pXe"/>
+                                    <constraint firstItem="2R6-LH-kdC" firstAttribute="top" secondItem="gEn-4p-y2Q" secondAttribute="top" constant="20" id="v0o-Gl-ZqS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gEn-4p-y2Q" firstAttribute="centerX" secondItem="wbc-yd-nQP" secondAttribute="centerX" id="1mS-2I-lCA"/>
+                            <constraint firstItem="idP-dz-B0Z" firstAttribute="leading" secondItem="wbc-yd-nQP" secondAttribute="leading" id="6cy-rl-j0g"/>
+                            <constraint firstItem="idP-dz-B0Z" firstAttribute="top" secondItem="8bI-gs-bmD" secondAttribute="bottom" id="P0Q-ds-1DV"/>
+                            <constraint firstItem="gEn-4p-y2Q" firstAttribute="centerY" secondItem="wbc-yd-nQP" secondAttribute="centerY" id="i7D-er-y58"/>
+                            <constraint firstAttribute="trailing" secondItem="idP-dz-B0Z" secondAttribute="trailing" id="ntt-nd-DPD"/>
+                            <constraint firstItem="d5i-Ba-RvD" firstAttribute="top" secondItem="idP-dz-B0Z" secondAttribute="bottom" id="q4o-VL-OEZ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="C6V-JS-RAG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="539" y="97"/>
+            <point key="canvasLocation" x="1765" y="191"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3A2-Gy-vOQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Tw-2v-c7c" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OUO-4V-bu5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="j1y-V4-xli" kind="relationship" relationship="rootViewController" id="lMu-9n-5X8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cfx-ls-suI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="191"/>
         </scene>
     </scenes>
 </document>
